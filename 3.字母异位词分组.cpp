@@ -1,12 +1,12 @@
-//2023.12.26
+﻿//2023.12.26
 //author: wuti
-//�Ѷȣ��е�
+//难度：中等
 //https://leetcode.cn/problems/group-anagrams/description/
 
 
-//��ĿҪ��
-//����һ���ַ������飬���㽫 ��ĸ��λ�� �����һ�𡣿��԰�����˳�򷵻ؽ���б���
-//��ĸ��λ�� ������������Դ���ʵ�������ĸ�õ���һ���µ��ʡ�
+//题目要求：
+//给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。
+//字母异位词 是由重新排列源单词的所有字母得到的一个新单词。
 
 #include<iostream>
 #include<vector>
@@ -16,22 +16,28 @@
 using namespace std;
 
 
-//��ζ���ĸ��λ�ʽ��з��飬һ�����͵ķ�������ʹ�ù�ϣ�ķ���
-//����ʹ��map������key������ĸ��λ��������Ψһ�����valueΪ������ĸ��λ��
-//���������ܹ������ĸ��λ�ʵķ��飬Ȼ�����map�������ѽ�����������м���
+//如何对字母异位词进行分组，一个典型的方法就是使用哈希的方法
+//我们使用map容器，key等于字母异位词排序后的唯一结果，value为所有字母异位词
+//这样，就能够完成字母异位词的分组，然后遍历map容器，把结果存入结果集中即可
+//时间复杂度：O(nklog⁡k),其中n是strs中的字符串的数量，k是strs中的字符串的的最大长度。
+//需要遍历n个字符串，对于每个字符串，需要 O(klog⁡k)的时间进行排序以及O(1)的时间更新哈希表，
+//因此总时间复杂度是 O(nklog⁡k)。
+//空间复杂度：O(nk)，其中n是strs中的字符串的数量，k是 strs中的字符串的的最大长度。需要用哈希表存储全部字符串。
+
+
 
 class Solution {
 public:
-	unordered_map<string, vector<string>> mp;//ע��value���ַ�������
+	unordered_map<string, vector<string>> mp;//注意value是字符串数组
 	vector<vector<string>> groupAnagrams(vector<string>& strs) {
 		for (string& str:strs) {
 			string key = str;
-			sort(key.begin(), key.end());//��key��������
-			mp[key].push_back(str);//ʹ��push_back����β��׷��
+			sort(key.begin(), key.end());//对key进行排序
+			mp[key].push_back(str);//使用push_back进行尾部追加
 		}
 
-		vector<vector<string>> ans;//��Ž���ļ���
-		//����map��������������
+		vector<vector<string>> ans;//存放结果的集合
+		//遍历map容器，存入结果集
 		for (auto it = mp.begin(); it != mp.end(); it++) {
 			ans.push_back(it->second);
 		}
