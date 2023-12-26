@@ -9,9 +9,11 @@ using namespace std;
 //给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
 //请你设计并实现时间复杂度为 O(n) 的算法解决此问题。
 
+
 //本题也是hash求解
 //首先我们将数组存放进unordered_set完成自动去重(这个去重并非必要的，但是却能够大大提高程序的运行效率)并便于后续元素的查找（这个是必须的）,
 //然后，我们遍历set容器，查找x-1是否在set中，若不在，从x开始计算连续序列的长度，最后将各段的连续子序列的最大长度返回即可
+//不建议直接使用leetcode官方题解求解，比较冗杂难记忆
 class Solution {
 public:
 	int longestConsecutive(vector<int>& nums) {
@@ -28,9 +30,6 @@ public:
 			}
 		}
 		return res;
-		
-
-
 	}
 
 };
