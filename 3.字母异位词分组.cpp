@@ -19,6 +19,7 @@ using namespace std;
 //如何对字母异位词进行分组，一个典型的方法就是使用哈希的方法
 //我们使用map容器，key等于字母异位词排序后的唯一结果，value为所有字母异位词
 //这样，就能够完成字母异位词的分组，然后遍历map容器，把结果存入结果集中即可
+
 class Solution {
 public:
 	unordered_map<string, vector<string>> mp;//注意value是字符串数组
