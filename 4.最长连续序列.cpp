@@ -1,4 +1,7 @@
-
+//2023.12.26
+//author: wuti
+//难度：中等
+//https://leetcode.cn/problems/longest-consecutive-sequence/description/
 #include<iostream>
 #include<vector>
 #include<unordered_set>
